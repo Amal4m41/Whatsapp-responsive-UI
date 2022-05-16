@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:whatsapp_responsive_ui/screens/chat_screen.dart';
 import 'package:whatsapp_responsive_ui/theme_colors.dart';
+import 'package:whatsapp_responsive_ui/utils/widget_functions.dart';
 
 import '../screens/contacts_list_screen.dart';
 
@@ -45,7 +47,16 @@ class TopNavBar extends StatelessWidget {
                   .toList()),
         ),
         body: TabBarView(children: [
-          ContactsListScreen(),
+          ContactsListScreen(
+              currentLayoutScreen: layout.mobileScreenLayout,
+              onSelectChatContactMobileScreen: (int id) => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => ChatScreen(
+                            id: id,
+                            isMobileLayout: true,
+                          ))),
+              onSelectChatContactWideScreen: (_) {}),
           Container(),
           Container(),
         ]),
