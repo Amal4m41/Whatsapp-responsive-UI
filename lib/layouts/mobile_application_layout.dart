@@ -6,6 +6,7 @@ class MobileApplicationLayout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print('MOBILE LAYOUT BUILD');
     return TopNavBar();
   }
 }

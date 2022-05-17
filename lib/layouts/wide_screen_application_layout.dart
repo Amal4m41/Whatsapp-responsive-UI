@@ -41,9 +41,12 @@ class _WideScreenApplicationLayoutState
         Expanded(
           child: Scaffold(
             appBar: AppBar(
+              backgroundColor: ThemeColors.appBarColor,
               leading: const Center(
                 child: CircleAvatar(
                   backgroundColor: Colors.white,
+                  backgroundImage:
+                      NetworkImage('https://image.ibb.co/eeqWbw/zen_1.jpg'),
                   radius: 22,
                 ),
               ),

@@ -16,7 +16,7 @@ class ResponsiveWidget extends StatelessWidget {
         print('MinWidth: ${constraint.minWidth}');
         print('maxHeight: ${constraint.maxHeight}');
         print('minHeight: ${constraint.minHeight}');
-        if (constraint.maxWidth > 600) {
+        if (constraint.maxWidth > 800) {
           return WideScreenApplicationLayout();
         } else {
           return MobileApplicationLayout();

@@ -10,11 +10,12 @@ class TopNavBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print('BUILD TOP NAV BAR');
     return DefaultTabController(
       length: 3,
       child: Scaffold(
         appBar: AppBar(
-          // backgroundColor: ThemeColors.,
+          backgroundColor: ThemeColors.appBarColor,
           elevation: 0,
           title: const Text(
             'WhatsApp',
@@ -30,21 +31,37 @@ class TopNavBar extends StatelessWidget {
                 onPressed: () {},
                 icon: const Icon(Icons.more_vert, color: Colors.grey)),
           ],
-          bottom: TabBar(
-              unselectedLabelColor: Colors.grey,
-              labelColor: ThemeColors.tabColor,
-              labelStyle: TextStyle(fontWeight: FontWeight.w500),
-              indicatorColor: ThemeColors.tabColor,
-              indicatorWeight: 2.5,
-              tabs: [
-                'CHATS',
-                'STATUS',
-                'CALLS',
-              ]
-                  .map((e) => Tab(
-                        text: e,
-                      ))
-                  .toList()),
+          bottom: PreferredSize(
+            preferredSize: const Size(double.infinity, kToolbarHeight),
+            child: Row(
+              children: [
+                const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 9.0),
+                  child: Icon(
+                    Icons.camera_alt,
+                    color: Colors.grey,
+                  ),
+                ),
+                Expanded(
+                  child: TabBar(
+                      unselectedLabelColor: Colors.grey,
+                      labelColor: ThemeColors.tabColor,
+                      labelStyle: const TextStyle(fontWeight: FontWeight.w500),
+                      indicatorColor: ThemeColors.tabColor,
+                      indicatorWeight: 2.5,
+                      tabs: [
+                        'CHATS',
+                        'STATUS',
+                        'CALLS',
+                      ]
+                          .map((e) => Tab(
+                                text: e,
+                              ))
+                          .toList()),
+                ),
+              ],
+            ),
+          ),
         ),
         body: TabBarView(children: [
           ContactsListScreen(

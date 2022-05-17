@@ -40,7 +40,7 @@ class ContactsListScreen extends StatelessWidget {
         ),
       ),
       separatorBuilder: (BuildContext context, int index) => const Divider(
-        height: 2,
+        height: 3,
         indent: 70,
         endIndent: 10,
         // color: ThemeColors.dividerColor,

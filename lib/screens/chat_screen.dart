@@ -36,9 +36,7 @@ class _ChatScreenState extends State<ChatScreen> {
   }
 
   void _fetchAndSortChatLog() {
-    chatsLog =
-        (selectedContactChatData!['chatlog'] as List<Map<String, dynamic>>)
-            .toList();
+    chatsLog = (selectedContactChatData!['chatlog'] as List<dynamic>).toList();
     //
     // chatsLog!.sort(
     //     (a, b) => (a['message_id'] as int).compareTo(b['message_id'] as int));
@@ -67,6 +65,7 @@ class _ChatScreenState extends State<ChatScreen> {
     print('BUILDING');
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: ThemeColors.appBarColor,
         // leading: Row(
         //   children: [
         //     Icon(Icons.arrow_back),
@@ -105,11 +104,25 @@ class _ChatScreenState extends State<ChatScreen> {
           ],
         ),
         actions: [
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.search, color: Colors.grey),
-            padding: const EdgeInsets.only(right: 0),
-          ),
+          if (widget.isMobileLayout) ...[
+            IconButton(
+                onPressed: () {},
+                icon: const Icon(
+                  Icons.videocam_rounded,
+                  color: Colors.grey,
+                )),
+            IconButton(
+                onPressed: () {},
+                icon: const Icon(
+                  Icons.phone,
+                  color: Colors.grey,
+                ))
+          ] else
+            IconButton(
+              onPressed: () {},
+              icon: const Icon(Icons.search, color: Colors.grey),
+              padding: const EdgeInsets.only(right: 0),
+            ),
           IconButton(
               onPressed: () {},
               icon: const Icon(Icons.more_vert, color: Colors.grey)),
@@ -153,6 +166,7 @@ class _ChatScreenState extends State<ChatScreen> {
           ),
           // selectedContactChatData!['chatlog'] //TODO
           Container(
+            // constraints: const BoxConstraints(minHeight: 55),
             height: MediaQuery.of(context).size.height * 0.08,
             color: ThemeColors.appBarColor,
             padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 8),
@@ -246,6 +260,7 @@ class MobileChatScreenBottomUI extends StatelessWidget {
                   borderSide: BorderSide.none,
                   borderRadius: BorderRadius.all(Radius.circular(20)),
                 ),
+                contentPadding: EdgeInsets.zero,
                 prefixIcon: const Icon(Icons.emoji_emotions,
                     size: 28, color: Colors.grey),
                 suffixIcon: Padding(
@@ -303,10 +318,12 @@ Widget searchBar() {
         enabledBorder: const OutlineInputBorder(
           borderSide: BorderSide(color: Colors.transparent),
           borderRadius: BorderRadius.all(Radius.circular(10)),
+          gapPadding: 0,
         ),
         focusedBorder: const OutlineInputBorder(
           borderSide: BorderSide(color: Colors.transparent),
           borderRadius: BorderRadius.all(Radius.circular(8)),
+          gapPadding: 0,
         ),
         isDense: true,
         prefixIcon: const Padding(
@@ -317,7 +334,7 @@ Widget searchBar() {
         hintText: 'Search or start new chat',
         hintStyle: const TextStyle(fontWeight: FontWeight.w100),
         filled: true,
-        fillColor: Colors.blueGrey.shade800),
+        fillColor: ThemeColors.appBarColor.withOpacity(0.8)),
     // fillColor: ThemeColors.appBarColor.withOpacity(0.8)),
   );
 }
